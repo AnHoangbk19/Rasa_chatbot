@@ -2,7 +2,7 @@
 Việc xây dựng một AI Chatbot nhằm phục vụ nhu cầu khách hàng cũng như đơn giản hóa việc check-in cho các nhân viên, từ đó giúp hỗ trợ cho việc kiểm soát ra vào trong công ty một cách hiệu quả hơn. Bên cạnh đó Chatbot là phần mềm tin nhắn tự động tích hợp trí tuệ nhân tạo (AI) và xử lý ngôn ngữ tự nhiên (NLP) để hiểu các câu hỏi của khách hàng và tự động hóa phản hồi cho họ, mô phỏng cuộc trò chuyện giữa người với người.
 ## Description
 Thiết kế một giao diện chatbot đơn giản tương tác với người dùng, với model được train thông qua Rasa Open Source. Để tích hợp với nhận diện khuôn mặt và nhận diện giọng nói, bạn cần kết hợp với địa chỉ API của những model đó chứ nó không được tích hợp sẵn trong chatbot.
-
+![My Image](chatbot.PNG)
 ## Requirement
 Để có thể sử dụng source code bạn cần phải cài đặt các thư viện sau với đúng phiên bản:
 ```bash
@@ -48,7 +48,10 @@ Bên cạnh đó bạn cần mở thêm 1 terminal mới để khởi tạo serv
 rasa run actions
 ```
 Như vậy chatbot mới có thể kết hợp với các câu lệnh được soạn trong actions.
-Sau khi chạy 2 câu lệnh trên 2 terminal khác nhau, ta cần tiếp tục tạo thêm một terminal nữa để khởi tạo web UI cho chatbot. Việc web UI chatbot sẽ được tạo trong thư mục **web ui** nên ta cần di chuyển vào thư mục đó và bắt đầu chạy file **app.py**.
+Sau khi chạy 2 câu lệnh trên 2 terminal khác nhau, ta cần tiếp tục tạo thêm một terminal nữa để khởi tạo web UI cho chatbot. Việc web UI chatbot sẽ được tạo trong thư mục **web ui** nên ta cần di chuyển vào thư mục đó và bắt đầu chạy file **app.py**:
+```bash
+python app.py
+```
 Như vậy bạn chỉ cần truy cập địa chỉ http://127.0.0.1:5000/ là sẽ có giao diện trò chuyện với chatbot.
 ## Authors
 * **An Pham** - *Initial work* - [AnHoangbk19](https://github.com/AnHoangbk19)
