@@ -1,0 +1,162 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - ask_alita
+  - cloud_service
+  - software_service
+  - data_service
+  - query_info
+  - thanks
+  - ask_service
+  - query_time
+  - city_name
+  - ask_temperature
+  - face_recog
+  - voice_recog
+  - check_dayoff
+  - submit_dayoff
+  - number_day
+  - login
+entities:
+  - cus_name
+  - city_name
+  - cus_reason
+  - check_name
+  - number_dayoff
+  - the_dayoff
+  - emotion
+slots:
+  cus_name:
+    type: text
+    influence_conversation: true
+  city_name:
+    type: text
+    influence_conversation: false
+  cus_reason:
+    type: categorical
+    influence_conversation: true
+    values:
+      - check_dayoff
+      - submit_dayoff
+  check_name:
+    type: categorical
+    influence_conversation: true
+    values:
+      - true_name
+      - false_name
+  the_dayoff:
+    type: text
+    influence_conversation: false
+  number_dayoff:
+    type: text
+    influence_conversation: false
+  emotion:
+    type: text
+    influence_conversation: false
+
+responses:
+  utter_greet:
+  - text: Xin chào bạn 🥳🥳🥳Chào mừng bạn đến với New Ocean IS. Mình là Alita, rất vui được gặp bạn😘
+  - text: Chào mừng bạn đến với New Ocean IS 🥳🥳🥳...Mình là Alita, rất vui được gặp bạn😘
+  - text: Helloooooo🥳🥳🥳 Mình Alita đây😘...Chào mừng bạn đến với New Ocean IS.
+  utter_chitchat:
+  - text: Có cần Alita hỗ trợ gì không?😎😎😎
+  - text: Bạn cần trợ giúp gì không nà, Alita sẽ giúp bạn hết mình?😊😊😊
+  - text: Bạn có thắc mắc gì cho công ty mình không, Alita sẽ giúp bạn giải đáp?😙😙😙
+  - text: Hôm nay là sinh nhật của bạn Nghĩa và Đạt trong công ty....Mọi người cùng Alita chúc mừng sinh nhật họ nào🥳🥳🥳
+  - text: Giáng Sinh đến rồi🎅🎅🎅...Alita chúc cho những điều tuyệt vời nhất sẽ đến với bạn và gia đình nha🥳🥳🥳
+  utter_ask:
+  - text: Bạn có muốn biết thêm các dịch vụ của công ty không?
+  - text: Cần tớ giúp xem thời gian bây giờ không?
+  - text: Có cần Alita hỗ trợ thêm thông tin của công ty không?😎😎😎
+  - text: Bạn có kiểm tra thông tin nhiệt độ tại thành phố mình muốn không?...Alita sẽ hỗ trợ cho bạn😙😙😙
+  utter_continue:
+  - text: Vậy bạn có cần Alita hỗ trợ gì nữa không?😗😗😗
+  utter_alita:
+  - text: Mình tên Alita, là nữ nha😉😉😉...Hiện mình đang là Chatbot cho NOIS, hy vọng chúng ta có thể giúp đỡ lẫn nhau nha.
+  utter_cloud_service:
+  - text: Azure Cloud Services....
+  utter_software_service:
+  - text: Custom Software Development....
+  utter_data_service:
+  - text: Data Analytics, Machine Learning & AI...
+  utter_info_nois:
+  - text: 'New Ocean IS, một công ty tập trung vào điện toán đám mây, ra đời vào tháng 1 năm 2010 với các nhà phát triển trẻ, tài năng, được Microsoft chứng nhận. Chúng tôi là Đối tác của Microsoft cho các dịch vụ khác nhau: NCloud Platform, Application Development, Data Analytics (Silver) và đặc biệt là Logistics, Supply Chain, và Manufacturing solutions. Website: https://nois.vn/vi/'
+  utter_default:
+  - text: 'Alita nghe chưa rõ🙄🙄🙄...Bạn nói lại giúp Alita với:'
+  utter_goodbye:
+  - text: Vậy Alita sẽ không làm phiền bạn nữa nha^^.....Nếu muốn cần người trò chuyện thì mình luôn sẵn lòng😎😎😎
+  utter_thanks:
+  - text: Chuyện nhỏ mà...đó là điều tối thiểu mà tôi có thể làm mà😉😉😉
+  utter_ask_service:
+  - text: "Hiện đây là các dịch vụ mà NOIS đang có nha....Bạn muốn Alita tư vấn dịch vụ nào😙😙😙:"
+    buttons:
+    - title: Azure Cloud Services
+      payload: /cloud_service
+    - title: Custom Software Development
+      payload: /software_service
+    - title: Data Analytics, Machine Learning & AI
+      payload: /data_service
+  utter_start_record:
+  - text: "Vậy Alita sẽ bắt đầu record giọng nói trong 5s nha....Bắt đầu:"
+  utter_finish_record:
+  - text: "Record kết thúc....cảm ơn bạn đã hợp tác với Alita😊😊😊"
+  utter_ask_city:
+  - text: "Okeee nha...Vậy bạn nhập giúp mình tên thành phố bạn muốn kiểm tra nha:"
+  utter_request_login_again:
+  - text: "Có vẻ đã xảy ra lỗi trong lúc nhận diện....Bạn đăng nhập lại giúp Alita nha😙😙😙:"
+    buttons:
+    - title: Nhận diện khuôn mặt
+      payload: /face_recog
+    - title: Nhận diện giọng nói
+      payload: /voice_recog
+
+  utter_request_login:
+  - text: "Bạn vui lòng đăng nhập giúp Alita nha😙😙😙.....Bạn muốn đăng nhập bằng cách nào:"
+    buttons:
+    - title: Nhận diện khuôn mặt
+      payload: /face_recog
+    - title: Nhận diện giọng nói
+      payload: /voice_recog
+
+  utter_ask_dayoff:
+  - text: "Bạn vui lòng trả lời giúp Alita các câu hỏi sau để mình xác nhận đơn nghỉ phép nha...."
+  
+  utter_check_staff_dayoff:
+  - text: "Đợi Alita một lát...để mình xem lại thông tin của {cus_name}🧐🧐🧐"
+
+
+  utter_commit_face:
+  - text: "Vậy Alita bắt đầu nhận diện khuôn mặt của bạn đây nha😊😊😊"
+
+  utter_submit:
+  - text: "Cho Alita xác nhận nha...Vậy bạn xin nghỉ trong vòng {number_dayoff} và bắt đầu nghỉ từ ngày {the_dayoff} đúng không?🙄🙄🙄 "
+  utter_ask_the_dayoff:
+  - text: "Không biết bạn muốn đăng ký nghỉ ngày nào trong tháng này nhỉ(Nhập số 1-31):"
+  utter_ask_number_dayoff:
+  - text: "Bạn nghỉ trong vòng mấy ngày nè😙😙😙...Lưu ý đừng nghỉ quá số ngày phép cho phép trong tháng này nha(Nhập số 1-31):"
+
+
+
+
+actions:
+- action_query_time
+- action_check_recog
+- action_recog
+- action_chatbot_answer
+- action_check_temperature
+- action_get_reason
+- action_clear_customer_name
+- action_clear_customer_reason
+- action_dayoff_service
+- action_check_name
+- action_get_number
+- action_access_cus
+- action_welcome_staff
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

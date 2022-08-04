@@ -1,0 +1,333 @@
+version: "2.0"
+
+stories:
+
+- story: cusomer chitchat
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_chitchat
+
+
+- story: staff login 
+  steps:
+  - intent: login
+  - action: utter_request_login
+  - or:
+    - intent: face_recog
+    - intent: voice_recog
+  - action: action_check_recog
+  - action: action_recog
+  - intent: affirm
+  - action: action_welcome_staff
+
+- story: staff login but deny recog
+  steps:
+  - intent: login
+  - action: utter_request_login
+  - or:
+    - intent: face_recog
+    - intent: voice_recog
+  - action: action_check_recog
+  - action: action_recog
+  - intent: deny
+  - action: utter_request_login_again
+
+- story: staff login but deny continue
+  steps:
+  - intent: login
+  - action: utter_request_login
+  - or:
+    - intent: face_recog
+    - intent: voice_recog
+  - action: action_check_recog
+  - action: action_recog
+  - intent: affirm
+  - action: action_welcome_staff
+  - intent: deny
+  - action: utter_goodbye
+  
+
+- story: staff login to check dayoff service
+  steps:
+  - or:
+    - intent: check_dayoff
+    - intent: submit_dayoff
+  - action: action_clear_customer_reason
+  - action: action_get_reason
+  - action: action_check_name
+  - slot_was_set:
+    - check_name: false_name
+  - action: action_access_cus
+  - or:
+    - intent: face_recog
+    - intent: voice_recog
+  - action: action_check_recog
+  - action: action_recog
+
+- story: staff already login with check dayoff
+  steps:
+  - or:
+    - intent: check_dayoff
+    - intent: submit_dayoff
+  - action: action_clear_customer_reason
+  - action: action_get_reason
+  - action: action_check_name
+  - slot_was_set:
+    - check_name: true_name
+    - cus_reason: check_dayoff
+  - action: utter_check_staff_dayoff
+  - action: action_dayoff_service
+  - action: utter_continue
+
+- story: staff already login with submit dayoff
+  steps:
+  - or:
+    - intent: check_dayoff
+    - intent: submit_dayoff
+  - action: action_clear_customer_reason
+  - action: action_get_reason
+  - action: action_check_name
+  - slot_was_set:
+    - check_name: true_name
+    - cus_reason: submit_dayoff
+  - action: utter_check_staff_dayoff
+  - action: action_dayoff_service
+  - intent: number_day
+  - action: action_get_number
+  - action: utter_ask_number_dayoff
+  - intent: number_day
+  - action: action_get_number
+  - action: utter_submit
+  - intent: affirm
+  - action: utter_continue
+
+- story: staff already login with submit dayoff but deny 
+  steps:
+  - or:
+    - intent: check_dayoff
+    - intent: submit_dayoff
+  - action: action_clear_customer_reason
+  - action: action_get_reason
+  - action: action_check_name
+  - slot_was_set:
+    - check_name: true_name
+    - cus_reason: submit_dayoff
+  - action: utter_check_staff_dayoff
+  - action: action_dayoff_service
+  - intent: deny
+  - action: utter_continue
+
+
+- story: staff login check dayoff 
+  steps:
+  - action: action_access_cus
+  - or:
+    - intent: face_recog
+    - intent: voice_recog
+  - action: action_check_recog
+  - action: action_recog
+  - intent: affirm
+  - slot_was_set:
+    - cus_reason: check_dayoff
+  - action: action_dayoff_service
+  - action: utter_ask
+
+  
+- story: staff login submit dayoff 
+  steps:
+  - action: action_access_cus
+  - or:
+    - intent: face_recog
+    - intent: voice_recog
+  - action: action_check_recog
+  - action: action_recog
+  - intent: affirm
+  - slot_was_set:
+    - cus_reason: submit_dayoff
+  - action: action_dayoff_service
+  - intent: number_day
+  - action: action_get_number
+  - action: utter_ask_number_dayoff
+  - intent: number_day
+  - action: action_get_number
+  - action: utter_submit
+  - intent: affirm
+  - action: utter_ask
+
+- story: staff login submit dayoff but deny
+  steps:
+  - action: action_access_cus
+  - or:
+    - intent: face_recog
+    - intent: voice_recog
+  - action: action_check_recog
+  - action: action_recog
+  - intent: affirm
+  - slot_was_set:
+    - cus_reason: submit_dayoff
+  - action: action_dayoff_service
+  - intent: deny
+  - action: utter_goodbye
+
+- story: staff login but deny
+  steps:
+  - action: action_access_cus
+  - or:
+    - intent: face_recog
+    - intent: voice_recog
+  - action: action_check_recog
+  - action: action_recog
+  - intent: deny
+  - action: utter_request_login_again
+
+
+- story: staff login agin
+  steps:
+  - action: utter_request_login_again
+  - or:
+    - intent: face_recog
+    - intent: voice_recog
+  - action: action_check_recog
+  - action: action_recog
+  - intent: deny
+  - action: utter_request_login_again
+
+
+- story: customer chitchat with nois info
+  steps:
+  - action: utter_chitchat
+  - intent: query_info
+  - action: utter_info_nois
+  - action: utter_ask
+
+- story: customer chitchat with query time
+  steps:
+  - action: utter_chitchat
+  - intent: query_time
+  - action: action_query_time
+  - action: utter_ask
+
+- story: customer chitchat with ask city temperature
+  steps:
+  - action: utter_chitchat
+  - intent: ask_temperature
+  - action: action_check_temperature
+  - intent: affirm
+  - action: action_chatbot_answer
+
+- story: customer chitchat with ask city temperature but wrong name city
+  steps:
+  - action: utter_chitchat
+  - intent: ask_temperature
+  - action: action_check_temperature
+  - intent: city_name
+  - action: action_check_temperature
+
+
+- story: continue chitchat but deny
+  steps:
+  - action: utter_ask
+  - intent: deny
+  - action: utter_continue
+  - intent: deny
+  - action: utter_goodbye
+
+- story: chitchat service company with cloud service
+  steps:
+  - action: utter_chitchat
+  - intent: ask_service
+  - action: utter_ask_service
+  - intent: cloud_service
+  - action: utter_cloud_service
+  - action: utter_ask
+
+- story: chitchat service company with software service
+  steps:
+  - action: utter_chitchat
+  - intent: ask_service
+  - action: utter_ask_service
+  - intent: software_service
+  - action: utter_software_service
+  - action: utter_ask
+
+- story: chitchat service company with data service
+  steps:
+  - action: utter_chitchat
+  - intent: ask_service
+  - action: utter_ask_service
+  - intent: data_service
+  - action: utter_data_service
+  - action: utter_ask
+
+
+- story: continue chitchat
+  steps:
+  - action: utter_ask
+  - intent: affirm
+  - action: action_chatbot_answer
+
+- story: continue chitchat then deny
+  steps:
+  - action: utter_ask
+  - intent: affirm
+  - action: action_chatbot_answer
+  - intent: deny
+  - action: utter_goodbye
+
+- story: continue chitchat with ask city temperature but deny
+  steps:
+  - action: utter_ask
+  - intent: affirm
+  - action: action_chatbot_answer
+  - or:
+    - intent: city_name
+    - intent: ask_temperature
+  - action: action_check_temperature
+  - intent: deny
+  - action: utter_continue
+  - intent: deny
+  - action: utter_goodbye
+
+- story: continue chitchat with cloud service
+  steps:
+  - action: utter_ask
+  - intent: affirm
+  - action: action_chatbot_answer
+  - intent: cloud_service
+  - action: utter_cloud_service
+  - action: utter_continue
+  - intent: deny
+  - action: utter_goodbye
+
+- story: continue chitchat with softwart service
+  steps:
+  - action: utter_ask
+  - intent: affirm
+  - action: action_chatbot_answer
+  - intent: software_service
+  - action: utter_software_service
+  - action: utter_continue
+  - intent: deny
+  - action: utter_goodbye
+
+- story: continue chitchat with data service
+  steps:
+  - action: utter_ask
+  - intent: affirm
+  - action: action_chatbot_answer
+  - intent: data_service
+  - action: utter_data_service
+  - action: utter_continue
+  - intent: deny
+  - action: utter_goodbye
+
+
+- story: deny continue chitchat
+  steps:
+  - action: utter_ask
+  - intent: deny
+  - action: utter_continue
+
+
+

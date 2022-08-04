@@ -1,0 +1,245 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - chào em
+    - hello em
+    - hi em
+    - em ơi, cho anh hỏi
+    - bot ơi
+    - cho mình hỏi chút
+    - hello bot
+    - hi
+    - xin chào
+    - bot ơi cho mình hỏi
+    - chào bot nha
+    - bot ơi bot
+    - bot ơi cho mình hỏi chút được không
+    - cho mình hỏi chút với
+    - cho mình hỏi chút được không
+    - xin chào bot
+    - hi bot
+    - xin chào nha
+    - hello
+- intent: goodbye
+  examples: |
+    - tạm biệt
+    - hẹn gặp lại
+    - ngủ ngon
+    - chúc ngủ ngon
+    - ngày mới tốt lành
+    - hẹn gặp sau
+    - bye
+    - bye bye
+    - tạm biệt bot nha
+    - mình sẽ quay lại sau
+    - bai bai
+    - goodbye
+    - ngủ ngon nhá
+    - tạm biệt bot
+    - gặp sau nha
+    - bye bot
+    - bai bot
+    - hẹn gặp vào ngày mai nhá
+    - thoát
+    - out
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - oke
+    - Okeeeee
+    - có
+    - được
+    - được đấy
+    - ok
+    - có ạ
+    - được thôi
+    - duyệt
+    - đúng rồi
+    - that right
+    - phải
+- intent: deny
+  examples: |
+    - no
+    - n
+    - nope
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - nah
+    - thôi
+    - không
+    - không cần đâu
+    - chắc khỏi
+    - khỏi
+    - chẳng cần
+    - bỏ qua
+    - bỏ
+    - thôi khỏi
+    - chả cần
+    - thôi bỏ đi
+    - bỏ đi
+    - không cần đâu ạ
+    - ko
+    - Không cần đau
+    - không cần
+    - khong
+
+- intent: ask_alita
+  examples: |
+    - Alita là ai vậy
+    - giới thiệu về bản thân đi
+    - Chatbot là ai vậy
+    - chatbot tên gì vậy
+    - chatbot giới thiệu về bản thân đi
+    - Alita có thể giới thiệu về bản thân không
+
+- intent: cloud_service
+  examples: |
+    - cloud_service
+    - cloud service
+
+- intent: software_service
+  examples: |
+    - software_service
+    - software service
+
+- intent: data_service
+  examples: |
+    - data_service
+    - data service
+
+- intent: query_info
+  examples: |
+    - thông tin công ty
+    - cty nois
+    - nois
+    - info nois
+    - nois info
+    - website công ty
+    - website nois
+
+- intent: query_time
+  examples: |
+    - Bây giờ là mấy giờ
+    - Hiện giờ là mấy giờ
+    - What time is it now
+    - time now
+    - time
+    - thời gian hiện tại
+    - thời gian bây giờ là mấy giờ
+
+- intent: thanks
+  examples: |
+    - cảm ơn Alita nha
+    - thanks Alita nha
+    - cảm ơn bot nhiều nha
+    - cảm ơn bot
+    - thank you
+
+- intent: ask_service
+  examples: |
+    - cho mình biết dịch vụ của công ty là gì
+    - dịch vụ công ty
+    - công ty đang làm những gì
+    - alita cho t biết dịch vụ công ty đi
+    - all service
+    - nois service
+
+- intent: city_name
+  examples: |
+    - [London](city_name)
+    - [New york](city_name)
+    - [Ho Chi Minh](city_name)
+    - [Ha Noi](city_name)
+
+- intent: ask_temperature
+  examples: |
+    - tôi muốn biết nhiệt độ thành phố [Ho Chi Minh](city_name)
+    - tôi muốn biết nhiệt độ thành phố [Ha Noi](city_name)
+    - tôi muốn biết nhiệt độ thành phố [London](city_name)
+    - nhiệt độ thành phố [Ho Chi Minh](city_name)
+    - nhiệt độ thành phố [Ha Noi](city_name)
+    - nhiệt độ thành phố [London](city_name)
+    - nhiệt độ tại [New york](city_name)
+    - nhiệt độ tại [London](city_name)
+    - cho t biết nhiệt độ tại [New york](city_name)
+    - cho t biết nhiệt độ tại [London](city_name)
+- intent: face_recog
+  examples: |
+    - đăng nhập bằng nhận diện khuôn mặt
+    - nhận diện khuôn mặt
+    - face recog
+    - face id
+    - khuông mặt recog
+    - khuon mat
+    - nhan dien khuon mat
+
+- intent: voice_recog
+  examples: |
+    - đăng nhập bằng nhận diện giọng nói
+    - nhận diện giọng nói
+    - voice recog
+    - giọng nói
+    - nhan dien giong noi
+    - check my voice
+    - hey alita kiểm tra giọng nói giúp tôi
+
+- intent: check_dayoff
+  examples: |
+    - cho t kiểm tra số ngày nghỉ phép
+    - số ngày nghỉ phép
+    - Alita cho t kiểm tra số ngày nghỉ phép
+    - check my dayoff
+    - kiem tra so ngay nghi phep
+    - so ngay nghi phep
+
+- intent: submit_dayoff
+  examples: |
+    - cho t xin nghỉ phép
+    - t muốn nghỉ vài ngày
+    - nghỉ phép 
+    - nghi phep
+    - submit dayoff
+    - Alita cho t xin nghỉ phép vài ngày
+
+- intent: number_day
+  examples: |
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 12
+    - 14
+    - 20
+    - 24
+    - 28
+    - 29
+    - 30
+
+- intent: login
+  examples: |
+    - aloo alita cho mình đăng nhập để kiểm tra thông tin bản thân
+    - cho mình kiểm tra thông tin bản thân
+    - check info myself
+    - kiem tra thong tin ban than
+    - cho minh dang nhap
+    - đăng nhập thông tin
+    - đăng nhập
+    - dang nhap
+    - dang nhap de kiem tra thong tin
+    - login
