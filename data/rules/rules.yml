@@ -1,28 +1,19 @@
 version: "2.0"
 
-rules:
+#Luật lệ được đặt ra giúp chatbot trả lời những câu hỏi nhất định với cùng câu trả lời khi gặp ngữ cảnh đó
+#Stories và rules phải hòa hợp với nhau, stories không được khác với rules được đặt ra
+#Khi khởi tạo form thì nên sử dụng rule
 
+rules:
+#Luật lệ: chatbot chào tạm biệt khi người dùng tạm biệt
 - rule: Say goodbye anytime the user says goodbye
   steps:
   - intent: goodbye
   - action: utter_goodbye
+
+#Luật lệ: chatbot chào cảm ơn lại khi người dùng cảm ơn
 - rule: Say thank you
   steps:
   - intent: thanks
   - action: utter_thanks
 
-# - rule: activate dayoff form
-#   steps:
-#   - action: utter_ask_dayoff
-#   - action: submit_dayoff_form
-#   - active_loop: submit_dayoff_form
-
-# - rule: submit dayoff form
-#   condition:
-#   - active_loop: submit_dayoff_form
-#   steps:
-#   - action: submit_dayoff_form
-#   - active_loop: null
-#   - slot_was_set:
-#     - requested_slot: null
-#   - action: utter_submit

@@ -11,11 +11,16 @@ from datetime import datetime
 import random
 
 
+
+#Thư mục pycode mục đích giúp thực hiện các hàm chức năng riêng của Chatbot mà không ảnh hưởng gì trong file actions.py
+
+
+#Thực hiện chức năng hiển thị tgian
 def show_time():
     current_time = datetime.now().strftime("%H:%M:%S")
     return current_time
 
-
+#Convert ảnh từ file sang b64
 
 def convert_img_to_b64(img):
     # img = cv2.imread(img)
@@ -23,7 +28,7 @@ def convert_img_to_b64(img):
     b64_string = base64.b64encode(jpg_img[1]).decode('utf-8')
     return b64_string
 
-
+#Kết nối API hiển thị thời tiết tại thành phố nhất định
 def weather(city): 
     api_address='http://api.openweathermap.org/data/2.5/weather?appid=0c42f7f6b53b244c78a418f4f181282a&q='
 
@@ -35,11 +40,14 @@ def weather(city):
         return
     return format_add
 
+
+#Kết nối API nhận diện khuôn mặt và trả về kết quả
 def face_recog(b64_img):
     url = 'http://172.16.40.157:5000/api/recognize_frame'
     myobj ={"image":b64_img}
     x = requests.post(url, json = myobj)
     return x.json()
+
 
 def take_picture():
     video = cv2.VideoCapture(0)
@@ -48,6 +56,7 @@ def take_picture():
     video.release()
     cv2.destroyAllWindows()
     return frame
+
 
 def record_voice():
     fs = 44100  
@@ -58,6 +67,7 @@ def record_voice():
     print("Ket thuc record")
     write('output.wav', fs, myrecording) 
 
+#Thực hiện dịch vụ kiểm tra ngày phép 
 def check_dayoff():
     num = random.random()
     day = random.randrange(1, 11)
@@ -71,6 +81,8 @@ def check_dayoff():
     return msg , flag
 
 
+
+#Thực hiện nhiệm vụ kết nối webhook của chatbot từ đó có thể deploy lên website
 def get_chatbot():
     url = 'http://localhost:5005/webhooks/rest/webhook'
     myobj = {
@@ -85,6 +97,7 @@ def get_chatbot():
     return temp
 
 
+#Nhận diện khuôn mặt rồi trả về kết quả
 def voice_recog():
     enc = base64.b64encode(open("output.wav", "rb+").read()).decode('utf-8')
     # with open('readme.txt','w') as f:

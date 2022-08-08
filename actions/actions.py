@@ -34,7 +34,7 @@ from scipy.io.wavfile import write
 
 
 
-
+#Giúp chatbot phản hồi khi người dùng hỏi về thời gian hiện tại
 class ActionQueryTime(Action):
 
     def name(self) -> Text:
@@ -50,6 +50,8 @@ class ActionQueryTime(Action):
 
         return []
 
+
+#Giúp chatbot phản hồi khi người dùng đồng ý về một dịch vụ gợi ý nào đó
 class ActionChatbotAnswer(Action):
     def name(self) -> Text:
         return "action_chatbot_answer"
@@ -82,6 +84,8 @@ class ActionChatbotAnswer(Action):
         return []
 
 
+#Giúp chatbot phản hồi khi người hỏi về nhiệt độ tại thành phố nào đó
+
 class ActionCheckTemperature(Action):
 
     def name(self) -> Text:
@@ -101,6 +105,7 @@ class ActionCheckTemperature(Action):
             dispatcher.utter_message(response="utter_ask")
         return []
 
+#Giúp chatbot phản hồi bắt đầu công cuộc recog
 
 class ActionCheckRecog(Action):
 
@@ -116,6 +121,9 @@ class ActionCheckRecog(Action):
         elif intent == "voice_recog":
             dispatcher.utter_message(response= "utter_start_record")
         return []
+
+
+#Giúp chatbot thực hiện công việc nhận diện giọng nói hoặc khuôn mặt
 
 class ActionRecog(Action):
 
@@ -170,6 +178,8 @@ class ActionRecog(Action):
         return [SlotSet('cus_name',name),SlotSet('emotion',emo)]
 
 
+#Giúp chatbot lấy thông tin người dùng muốn đăng ký hay chỉ check nghỉ phép
+
 class ActionGetReason(Action):
 
     def name(self) -> Text:
@@ -182,6 +192,7 @@ class ActionGetReason(Action):
         print("Intent:",intent)
         return [SlotSet('cus_reason',intent)]
 
+#Giúp chatbot ghi nhận lại người dùng đăng nhập hay chưa
 
 class ActionCheckName(Action):
 
@@ -196,6 +207,9 @@ class ActionCheckName(Action):
         if name != None:
             value = 'true_name'
         return [SlotSet('check_name',value)]
+
+
+#Giúp chatbot thực hiện dịch vụ kiểm tra ngày phép hoặc đăng ký ngày phép
 
 class ActionDayoffServoce(Action):
 
@@ -217,6 +231,9 @@ class ActionDayoffServoce(Action):
                 dispatcher.utter_message(response= "utter_ask_the_dayoff")
         return []
 
+
+#Giúp chatbot lấy thông tin số ngày hoặc ngày nhân viên muốn nghỉ
+
 class ActionGetNumber(Action):
 
     def name(self) -> Text:
@@ -235,6 +252,9 @@ class ActionGetNumber(Action):
         return []
 
 
+#Giúp chatbot phản hồi yêu cầu đăng nhập từ người dùng
+
+
 class ActionAccessCus(Action):
 
     def name(self) -> Text:
@@ -247,6 +267,9 @@ class ActionAccessCus(Action):
         dispatcher.utter_message(text=msg)
         dispatcher.utter_message(response="utter_request_login")
         return []
+
+
+#Giúp chatbot chào đón nhân viên theo cảm xúc của nhân viên hiện tại
 
 class ActionWelcomeStaff(Action):
     def name(self) -> Text:
@@ -274,11 +297,16 @@ class ActionWelcomeStaff(Action):
 ###############################################################################################################################
 ###############################################################################################################################
 
+
+#Giúp chatbot xóa bỏ tên nhân viên khỏi slot
+
 class ActionClearCustomerName(Action):
     def name(self) -> Text:
         return "action_clear_customer_name"
     def run(self, dispatcher: "CollectingDispatcher", tracker: Tracker, domain: "DomainDict") -> List[Dict[Text, Any]]:
         return [SlotSet("cus_name", None)]
+
+#Giúp chatbot xóa bỏ lý do phép khỏi slot
 
 class ActionClearCustomerReason(Action):
     def name(self) -> Text:

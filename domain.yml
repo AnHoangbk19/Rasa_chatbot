@@ -1,5 +1,7 @@
 version: "2.0"
 
+
+#Tập hợp các intent được soạn trong file nlu.yml
 intents:
   - greet
   - goodbye
@@ -21,6 +23,9 @@ intents:
   - submit_dayoff
   - number_day
   - login
+
+#Tập hợp các entities lưu trữ thông tin từ người dùng
+
 entities:
   - cus_name
   - city_name
@@ -29,6 +34,7 @@ entities:
   - number_dayoff
   - the_dayoff
   - emotion
+#Dùng để chỉnh kiểu tùy ý của entities, kiểm tra xem nó có tác động vào cuộc đối thoại không
 slots:
   cus_name:
     type: text
@@ -58,6 +64,8 @@ slots:
     type: text
     influence_conversation: false
 
+
+#Tập hợp các câu trả lời của chatbot
 responses:
   utter_greet:
   - text: Xin chào bạn 🥳🥳🥳Chào mừng bạn đến với New Ocean IS. Mình là Alita, rất vui được gặp bạn😘
@@ -142,7 +150,7 @@ responses:
 
 
 
-
+#Tập hợp các tên action được soạn trong file actions.py
 actions:
 - action_query_time
 - action_check_recog

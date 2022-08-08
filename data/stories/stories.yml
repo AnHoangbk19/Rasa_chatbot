@@ -1,14 +1,19 @@
 version: "2.0"
 
+#Stories dùng để soạn những ngữ cảnh xảy ra mà chatbot sẽ trả lời tùy vào ngữ cảnh đó
+#Nếu không soạn những câu nói đã viết trong nlu vào stories, chatbot sẽ không hiểu bạn đang nói vào vấn đề gì mà trả lời
+
 stories:
 
+
+#Ngữ cảnh chatbot sẽ chào lại và hỏi xem người muôn sử dụng dịch vụ gì khi người dùng chào chatbot
 - story: cusomer chitchat
   steps:
   - intent: greet
   - action: utter_greet
   - action: utter_chitchat
 
-
+#Ngữ cảnh chatbot bắt đầu quá trình đăng nhập khi người dùng yêu cầu đăng nhập
 - story: staff login 
   steps:
   - intent: login
@@ -21,6 +26,8 @@ stories:
   - intent: affirm
   - action: action_welcome_staff
 
+
+#Ngữ cảnh chatbot bắt đầu quá trình đăng nhập nhưng nhận diện sai người dùng
 - story: staff login but deny recog
   steps:
   - intent: login
@@ -33,6 +40,8 @@ stories:
   - intent: deny
   - action: utter_request_login_again
 
+
+#Ngữ cảnh chatbot đăng nhập thành công và người dùng không muốn tiếp tục chat nữa
 - story: staff login but deny continue
   steps:
   - intent: login
@@ -48,6 +57,7 @@ stories:
   - action: utter_goodbye
   
 
+#Ngữ cảnh chatbot bắt đầu quá trình đăng nhập để kiểm tra ngày phép hoặc đăng ký ngày phép cho người dùng
 - story: staff login to check dayoff service
   steps:
   - or:
@@ -65,6 +75,8 @@ stories:
   - action: action_check_recog
   - action: action_recog
 
+
+#Ngữ cảnh chatbot kiểm tra ngày phép khi mà người dùng đã đăng nhập
 - story: staff already login with check dayoff
   steps:
   - or:
@@ -80,6 +92,8 @@ stories:
   - action: action_dayoff_service
   - action: utter_continue
 
+
+#Ngữ cảnh chatbot đăng ký ngày phép khi mà người dùng đã đăng nhập
 - story: staff already login with submit dayoff
   steps:
   - or:
@@ -102,6 +116,8 @@ stories:
   - intent: affirm
   - action: utter_continue
 
+
+#Ngữ cảnh chatbot đăng ký ngày phép khi mà người dùng đã đăng nhập nhưng người dùng đã hết được nghỉ phép và từ chối tiếp tục chat
 - story: staff already login with submit dayoff but deny 
   steps:
   - or:
@@ -119,6 +135,8 @@ stories:
   - action: utter_continue
 
 
+#Ngữ cảnh chatbot kiểm tra ngày phép sau khi người dùng đăng nhập 
+
 - story: staff login check dayoff 
   steps:
   - action: action_access_cus
@@ -134,6 +152,9 @@ stories:
   - action: utter_ask
 
   
+#Ngữ cảnh chatbot đăng ký ngày phép sau khi người dùng đăng nhập
+
+
 - story: staff login submit dayoff 
   steps:
   - action: action_access_cus
@@ -155,6 +176,8 @@ stories:
   - intent: affirm
   - action: utter_ask
 
+  #Ngữ cảnh chatbot đăng ký ngày phép sau khi người dùng đăng nhập nhưng hết ngày phép và người dùng từ chối tiếp tục chat
+
 - story: staff login submit dayoff but deny
   steps:
   - action: action_access_cus
@@ -170,6 +193,8 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
+
+#Ngữ cảnh chatbot sau khi người dùng nhận diện và xác nhận không đúng
 - story: staff login but deny
   steps:
   - action: action_access_cus
@@ -181,8 +206,8 @@ stories:
   - intent: deny
   - action: utter_request_login_again
 
-
-- story: staff login agin
+#Ngữ cảnh chatbot yêu cầu đăng nhập lại nhưng vẫn tiếp tục xác nhận sai
+- story: staff login again
   steps:
   - action: utter_request_login_again
   - or:
@@ -193,7 +218,7 @@ stories:
   - intent: deny
   - action: utter_request_login_again
 
-
+#Ngữ cảnh chatbot được yêu cầu về thông tin công ty
 - story: customer chitchat with nois info
   steps:
   - action: utter_chitchat
@@ -201,6 +226,8 @@ stories:
   - action: utter_info_nois
   - action: utter_ask
 
+
+#Ngữ cảnh chatbot được yêu cầu về thời gian hiện tại
 - story: customer chitchat with query time
   steps:
   - action: utter_chitchat
@@ -208,6 +235,8 @@ stories:
   - action: action_query_time
   - action: utter_ask
 
+
+#Ngữ cảnh chatbot được yêu cầu thông tin nhiệt độ tại thành phố mình muốn
 - story: customer chitchat with ask city temperature
   steps:
   - action: utter_chitchat
@@ -216,6 +245,8 @@ stories:
   - intent: affirm
   - action: action_chatbot_answer
 
+
+#Ngữ cảnh chatbot được yêu cầu thông tin nhiệt độ tại thành phố mình muốn nhưng điền sai tên thành phố
 - story: customer chitchat with ask city temperature but wrong name city
   steps:
   - action: utter_chitchat
@@ -224,6 +255,7 @@ stories:
   - intent: city_name
   - action: action_check_temperature
 
+#Ngữ cảnh chatbot khi người dùng không muốn chat nữa
 
 - story: continue chitchat but deny
   steps:
@@ -232,6 +264,9 @@ stories:
   - action: utter_continue
   - intent: deny
   - action: utter_goodbye
+
+
+#Ngữ cảnh chatbot khi được hỏi về dịch vụ cloud service
 
 - story: chitchat service company with cloud service
   steps:
@@ -242,6 +277,8 @@ stories:
   - action: utter_cloud_service
   - action: utter_ask
 
+#Ngữ cảnh chatbot khi được hỏi về dịch vụ software service
+
 - story: chitchat service company with software service
   steps:
   - action: utter_chitchat
@@ -250,6 +287,9 @@ stories:
   - intent: software_service
   - action: utter_software_service
   - action: utter_ask
+
+
+#Ngữ cảnh chatbot khi được hỏi về dịch vụ data service
 
 - story: chitchat service company with data service
   steps:
@@ -260,12 +300,15 @@ stories:
   - action: utter_data_service
   - action: utter_ask
 
+#Ngữ cảnh chatbot gợi ý dịch vụ ngẫu nhiên và người dùng đồng ý xem dịch vụ đó
 
 - story: continue chitchat
   steps:
   - action: utter_ask
   - intent: affirm
   - action: action_chatbot_answer
+
+#Ngữ cảnh chatbot gợi ý dịch vụ ngẫu nhiên và người dùng đồng ý xem dịch vụ đó nhưng từ chối tiếp tục sau khi xem
 
 - story: continue chitchat then deny
   steps:
@@ -274,6 +317,8 @@ stories:
   - action: action_chatbot_answer
   - intent: deny
   - action: utter_goodbye
+
+#Ngữ cảnh chatbot sau khi trả lời nhiệt độ và người dùng muốn kết thúc chat
 
 - story: continue chitchat with ask city temperature but deny
   steps:
@@ -289,6 +334,9 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
+
+#Ngữ cảnh chatbot gợi ý các dịch vụ của công ty và người dùng chọn cloud service
+
 - story: continue chitchat with cloud service
   steps:
   - action: utter_ask
@@ -300,7 +348,9 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-- story: continue chitchat with softwart service
+
+#Ngữ cảnh chatbot gợi ý các dịch vụ của công ty và người dùng chọn software service
+- story: continue chitchat with software service
   steps:
   - action: utter_ask
   - intent: affirm
@@ -310,6 +360,9 @@ stories:
   - action: utter_continue
   - intent: deny
   - action: utter_goodbye
+
+
+#Ngữ cảnh chatbot gợi ý các dịch vụ của công ty và người dùng chọn dâta service
 
 - story: continue chitchat with data service
   steps:
@@ -322,6 +375,7 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
+#Ngữ cảnh chatbot gợi ý và người dùng từ chối dịch vụ được gợi ý
 
 - story: deny continue chitchat
   steps:
